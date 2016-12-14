@@ -46,7 +46,7 @@ class RecordFormatter(object):
         data.extend([str(field) for field in fields])
         request = ",".join(data)     
         
-        return request + self._record_separator
+        return request + self._record_seperator
     
     
     def terminate_recordset(self):

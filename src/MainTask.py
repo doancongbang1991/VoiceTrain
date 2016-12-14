@@ -9,7 +9,7 @@ from vocollect_core.utilities import obj_factory
 from BackStockTask import BackStockTask
 from voice import globalwords
 from vocollect_core.utilities.localization import itext
-from main import Inventory
+from LutOdr import InventoryOdr
 WELCOME_PROMPT = 'welcomePrompt'
 REQUEST_LOCATION = 'requestLocation'
 LOCATION_PROMPT = 'locationPrompt'
@@ -24,7 +24,7 @@ class MainTask(TaskBase):
     def __init__(self, taskRunner = None, callingTask = None):
         super(MainTask,self).__init__(taskRunner, callingTask)
         self.name = 'taskMain'
-        self._commonOdr = Inventory()
+        self._commonOdr = InventoryOdr()
         
     def initializeStates(self):
         self.addState(WELCOME_PROMPT, self.welcome_prompt)

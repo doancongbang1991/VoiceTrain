@@ -50,6 +50,10 @@
   <properties>
     <property name="TaskRevision" value="1.0" type="String" editable="false" />
     <property name="SaveState" value="true" type="Boolean" editable="true" />
+    <property name="LUTHost" value="127.0.0.1" type="String" editable="true" />
+    <property name="ODRHost" value="127.0.0.1" type="String" editable="true" />
+    <property name="LUTPort" value="15008" type="Integer" editable="true" />
+    <property name="ODRPort" value="15009" type="Integer" editable="true" />
   </properties>
   <deviceSettings />
   <rnpFiles />

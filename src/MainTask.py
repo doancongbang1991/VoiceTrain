@@ -9,6 +9,7 @@ from vocollect_core.utilities import obj_factory
 from BackStockTask import BackStockTask
 from voice import globalwords
 from vocollect_core.utilities.localization import itext
+from main import Inventory
 WELCOME_PROMPT = 'welcomePrompt'
 REQUEST_LOCATION = 'requestLocation'
 LOCATION_PROMPT = 'locationPrompt'
@@ -23,6 +24,7 @@ class MainTask(TaskBase):
     def __init__(self, taskRunner = None, callingTask = None):
         super(MainTask,self).__init__(taskRunner, callingTask)
         self.name = 'taskMain'
+        self._commonOdr = Inventory()
         
     def initializeStates(self):
         self.addState(WELCOME_PROMPT, self.welcome_prompt)
@@ -55,6 +57,7 @@ class MainTask(TaskBase):
             self._bin_qty = 0
             self.launch(obj_factory.get(BackStockTask,self._location, self.taskRunner), self.current_state)
     def send_inventory(self):
+        self._commonOdr.send('ODRCount', self._location, self._bin_qty)
         self.next_state = REQUEST_LOCATION
     
     def sign_off(self):
@@ -63,5 +66,5 @@ class MainTask(TaskBase):
             self.return_to(self.name, WELCOME_PROMPT)
         else: 
             globalwords.words['sign off'].enabled = True
-            
+
         

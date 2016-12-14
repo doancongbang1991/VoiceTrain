@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testdata>
+	<requestSettings endOfRecordSet="\r\n\n"/>
+	<responseQueue>
+		<response name="Main: Request Location" endOfRecord="\r\n" expression="LUTLocation.*">
+			<record data= "5 4 X 3 2,123"/>
+		</response>	
+		<response name="Backstock: Query" endOfRecord="\r\n" expression="LUTBackStock.*">
+			<record data= "5 4 X 3 2,456"/>
+		</response>
+	</responseQueue>
+</testdata>

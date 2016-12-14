@@ -9,7 +9,9 @@ from vocollect_core.utilities import obj_factory
 from BackStockTask import BackStockTask
 from voice import globalwords
 from vocollect_core.utilities.localization import itext
-from LutOdr import InventoryOdr
+from LutOdr import InventoryOdr, InventoryLut
+from vocollect_lut_odr.receivers import StringField, NumericField
+
 WELCOME_PROMPT = 'welcomePrompt'
 REQUEST_LOCATION = 'requestLocation'
 LOCATION_PROMPT = 'locationPrompt'
@@ -25,6 +27,7 @@ class MainTask(TaskBase):
         super(MainTask,self).__init__(taskRunner, callingTask)
         self.name = 'taskMain'
         self._commonOdr = InventoryOdr()
+        self._assignmentLut = InventoryLut('LUTLocation', StringField('Location'),NumericField('CheckDigit'))
         
     def initializeStates(self):
         self.addState(WELCOME_PROMPT, self.welcome_prompt)
@@ -38,8 +41,13 @@ class MainTask(TaskBase):
         prompt_ready(itext('main.welcome.prompt'), True)
         
     def request_location(self):
-        self._location = 'location ABC'
-        self._chk_digit = '123'
+        if self._assignmentLut.send() == 0:
+            data = self._assignmentLut.get_data()
+            self._location = data[0]['Location']
+            self._chk_digit = data[0]['CheckDigit']
+        else:
+            self.next_state = REQUEST_LOCATION
+        
     
     def location_prompt(self):
         globalwords.words['sign off'].enabled = True

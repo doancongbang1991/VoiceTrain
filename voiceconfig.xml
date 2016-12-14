@@ -44,6 +44,8 @@
     <phonetic phrase="Y" substitution="yankee" display="yankee" locale="en_US" />
     <phonetic phrase="Z" substitution="zulu" display="zulu" locale="en_US" />
     <phonetic phrase="\" substitution="back slash" display="back slash" locale="en_US" />
+    <phonetic phrase="back stock" substitution="back stock" display="back stock" locale="en_US" />
+    <phonetic phrase="back stock" substitution="cái gì đó" display="cái gì đó" locale="sv_SE" />
   </phoneticSubstitutions>
   <properties>
     <property name="TaskRevision" value="1.0" type="String" editable="false" />

@@ -4,9 +4,10 @@ Created on Dec 13, 2016
 @author: BangDoan
 '''
 from vocollect_core.task.task import TaskBase
-from vocollect_core.dialog.functions import prompt_ready, prompt_digits, prompt_only
+from vocollect_core.dialog.functions import prompt_ready, prompt_digits, prompt_only, prompt_yes_no
 from vocollect_core.utilities import obj_factory
 from BackStockTask import BackStockTask
+from voice import globalwords
 
 WELCOME_PROMPT = 'welcomePrompt'
 REQUEST_LOCATION = 'requestLocation'
@@ -31,6 +32,7 @@ class MainTask(TaskBase):
         self.addState(SEND_INVENTORY, self.send_inventory)
         
     def welcome_prompt(self):
+        globalwords.words['sign off'].enabled = False
         prompt_ready('Welcome to Voice Artisan', True)
         
     def request_location(self):
@@ -38,6 +40,7 @@ class MainTask(TaskBase):
         self._chk_digit = '123'
     
     def location_prompt(self):
+        globalwords.words['sign off'].enabled = True
         op_entry = prompt_digits('go to location ' + self._location, 'go to location and speak the check digits',
                                 3, 3, confirm=False)
         if int(self._chk_digit) != int(op_entry) :
@@ -54,4 +57,11 @@ class MainTask(TaskBase):
     def send_inventory(self):
         self.next_state = REQUEST_LOCATION
     
-    
+    def sign_off(self):
+        if prompt_yes_no('sign off, correct?'):
+            prompt_only('signing off')
+            self.return_to(self.name, WELCOME_PROMPT)
+        else: 
+            globalwords.words['sign off'].enabled = True
+            
+        

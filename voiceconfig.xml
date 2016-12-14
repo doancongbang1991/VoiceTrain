@@ -3,6 +3,7 @@
   <embeddedTraining />
   <vocabulary>
     <vocab word="back stock" enabled="false" echo="false" />
+    <vocab word="sign off" function="InvGlobals.sign_off" enabled="true" echo="false" />
   </vocabulary>
   <phoneticSubstitutions>
     <phonetic phrase=" " substitution="space" display="space" locale="en_US" />

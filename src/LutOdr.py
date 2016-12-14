@@ -35,7 +35,8 @@ class InventoryLut(object):
         #create transport
         self._transport = TransientSocketTransport(
                         str(get_voice_application_property('LUTHost')),
-                        int(get_voice_application_property('LUTPort')))
+                        int(get_voice_application_property('LUTPort')),
+                        30)
         #define LUT
         self._connection = LutConnection(self._transport,
                                          RecordFormatter(command),

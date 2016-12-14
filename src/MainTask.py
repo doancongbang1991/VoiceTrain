@@ -8,7 +8,7 @@ from vocollect_core.dialog.functions import prompt_ready, prompt_digits, prompt_
 from vocollect_core.utilities import obj_factory
 from BackStockTask import BackStockTask
 from voice import globalwords
-
+from vocollect_core.utilities.localization import itext
 WELCOME_PROMPT = 'welcomePrompt'
 REQUEST_LOCATION = 'requestLocation'
 LOCATION_PROMPT = 'locationPrompt'
@@ -33,7 +33,7 @@ class MainTask(TaskBase):
         
     def welcome_prompt(self):
         globalwords.words['sign off'].enabled = False
-        prompt_ready('Welcome to Voice Artisan', True)
+        prompt_ready(itext('main.welcome.prompt'), True)
         
     def request_location(self):
         self._location = 'location ABC'
@@ -41,10 +41,10 @@ class MainTask(TaskBase):
     
     def location_prompt(self):
         globalwords.words['sign off'].enabled = True
-        op_entry = prompt_digits('go to location ' + self._location, 'go to location and speak the check digits',
+        op_entry = prompt_digits(itext('main.location.prompt',self._location), itext('main.location.help'),
                                 3, 3, confirm=False)
         if int(self._chk_digit) != int(op_entry) :
-            prompt_only('wrong ' + str(op_entry) + ' try again', True)
+            prompt_only(itext('main.wrong.check.digit', str(op_entry)), True)
             self.next_state = LOCATION_PROMPT
     
     def quantity_prompt(self):

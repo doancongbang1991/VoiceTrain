@@ -5,6 +5,7 @@ Created on Dec 13, 2016
 '''
 from vocollect_core.task.task import TaskBase
 from vocollect_core.dialog.functions import prompt_only
+from vocollect_core.utilities.localization import itext
 
 REQUEST_STOCK = 'requestBacekStock'
 QUANTITY_PROMPT = 'quantityPrompt'
@@ -24,4 +25,4 @@ class BackStockTask(TaskBase):
         self._quantity = '456'
     
     def quantity_prompt(self):
-        prompt_only('there are ' + str(self._quantity) + ' items in back stock')
+        prompt_only(itext('backstock.quantity', str(self._quantity)))

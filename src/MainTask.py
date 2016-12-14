@@ -49,7 +49,7 @@ class MainTask(TaskBase):
     
     def quantity_prompt(self):
         BACK_STOCK_CMD = 'back stock'
-        self._bin_qty = prompt_digits('quantity?', 'speak the bin quantity or say back stock', 
+        self._bin_qty = prompt_digits(itext('main.quantity.prompt'), itext('main.quantity.prompt.help'), 
                                 1, 5, True, additional_vocab = {BACK_STOCK_CMD : False})
         if self._bin_qty == BACK_STOCK_CMD:
             self._bin_qty = 0
@@ -58,8 +58,8 @@ class MainTask(TaskBase):
         self.next_state = REQUEST_LOCATION
     
     def sign_off(self):
-        if prompt_yes_no('sign off, correct?'):
-            prompt_only('signing off')
+        if prompt_yes_no(itext('global.sign.off.confirm')):
+            prompt_only(itext('global.sign.off'))
             self.return_to(self.name, WELCOME_PROMPT)
         else: 
             globalwords.words['sign off'].enabled = True

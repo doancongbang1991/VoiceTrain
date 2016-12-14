@@ -15,11 +15,11 @@ from vocollect_lut_odr.transports import TransientSocketTransport
 class InventoryOdr(object):
     def __init__(self):
         #create transport
-         self._transport = TransientSocketTransport(
+        self._transport = TransientSocketTransport(
                         str(get_voice_application_property('ODRHost')),
                         int(get_voice_application_property('ODRPort')))
-         self._formatter = RecordFormatter('')
-         self._connection = OdrConnection('Inventory', self._transport,self._formatter, OdrConfirmationByte())
+        self._formatter = RecordFormatter('')
+        self._connection = OdrConnection('Inventory', self._transport,self._formatter, OdrConfirmationByte())
          
     def send(self, command, *fields):
         #save the command
@@ -40,7 +40,7 @@ class RecordFormatter(object):
         ''' Format the record's fields, and terminate with a record separator '''
         from voice import getenv
         
-        data = [self.command_name, time.strptime("%m-%d-%y %H:%M:%S"), 
+        data = [self.command_name, time.strftime("%m-%d-%y %H:%M:%S"), 
                 getenv('Device.Id', ''),
                 getenv('Operator.Id', '')]
         data.extend([str(field) for field in fields])

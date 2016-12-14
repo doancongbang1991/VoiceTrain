@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<voiceApplicationConfig>
+  <embeddedTraining />
+  <vocabulary>
+    <vocab word="back stock" enabled="false" echo="false" />
+  </vocabulary>
+  <phoneticSubstitutions>
+    <phonetic phrase=" " substitution="space" display="space" locale="en_US" />
+    <phonetic phrase="#" substitution="pound" display="pound" locale="en_US" />
+    <phonetic phrase="$" substitution="dollar" display="dollar" locale="en_US" />
+    <phonetic phrase="%" substitution="percent" display="percent" locale="en_US" />
+    <phonetic phrase="&amp;" substitution="ampersand" display="ampersand" locale="en_US" />
+    <phonetic phrase="*" substitution="asterisk" display="asterisk" locale="en_US" />
+    <phonetic phrase="+" substitution="plus" display="plus" locale="en_US" />
+    <phonetic phrase="-" substitution="dash" display="dash" locale="en_US" />
+    <phonetic phrase="." substitution="point" display="point" locale="en_US" />
+    <phonetic phrase="/" substitution="slash" display="slash" locale="en_US" />
+    <phonetic phrase="=" substitution="equals" display="equals" locale="en_US" />
+    <phonetic phrase="A" substitution="alpha" display="alpha" locale="en_US" />
+    <phonetic phrase="B" substitution="bravo" display="bravo" locale="en_US" />
+    <phonetic phrase="C" substitution="charlie" display="charlie" locale="en_US" />
+    <phonetic phrase="D" substitution="delta" display="delta" locale="en_US" />
+    <phonetic phrase="E" substitution="echo" display="echo" locale="en_US" />
+    <phonetic phrase="F" substitution="foxtraught" display="foxtrot" locale="en_US" />
+    <phonetic phrase="G" substitution="golf" display="golf" locale="en_US" />
+    <phonetic phrase="H" substitution="hotel" display="hotel" locale="en_US" />
+    <phonetic phrase="I" substitution="india" display="india" locale="en_US" />
+    <phonetic phrase="J" substitution="juliet" display="juliet" locale="en_US" />
+    <phonetic phrase="K" substitution="keelo" display="kilo" locale="en_US" />
+    <phonetic phrase="L" substitution="lima" display="lima" locale="en_US" />
+    <phonetic phrase="M" substitution="mike" display="mike" locale="en_US" />
+    <phonetic phrase="N" substitution="november" display="november" locale="en_US" />
+    <phonetic phrase="O" substitution="oscar" display="oscar" locale="en_US" />
+    <phonetic phrase="P" substitution="papa" display="papa" locale="en_US" />
+    <phonetic phrase="Q" substitution="quebec" display="quebec" locale="en_US" />
+    <phonetic phrase="R" substitution="romeo" display="romeo" locale="en_US" />
+    <phonetic phrase="S" substitution="sierra" display="sierra" locale="en_US" />
+    <phonetic phrase="T" substitution="tango" display="tango" locale="en_US" />
+    <phonetic phrase="U" substitution="uniform" display="uniform" locale="en_US" />
+    <phonetic phrase="V" substitution="victor" display="victor" locale="en_US" />
+    <phonetic phrase="W" substitution="whiskey" display="whiskey" locale="en_US" />
+    <phonetic phrase="X" substitution="ekssray" display="x-ray" locale="en_US" />
+    <phonetic phrase="Y" substitution="yankee" display="yankee" locale="en_US" />
+    <phonetic phrase="Z" substitution="zulu" display="zulu" locale="en_US" />
+    <phonetic phrase="\" substitution="back slash" display="back slash" locale="en_US" />
+  </phoneticSubstitutions>
+  <properties>
+    <property name="TaskRevision" value="1.0" type="String" editable="false" />
+    <property name="SaveState" value="true" type="Boolean" editable="true" />
+  </properties>
+  <deviceSettings />
+  <rnpFiles />
+</voiceApplicationConfig>
+

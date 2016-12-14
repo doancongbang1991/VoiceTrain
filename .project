@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Inventory</name>
+	<comment></comment>
+	<projects>
+		<project>Vocollect Core Library 1.3.0</project>
+		<project>Vocollect LUT ODR Library 1.1.2</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.python.pydev.PyDevBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.vocollect.voiceartisan.dialogFileValidator</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.vocollect.voiceartisan.voiceApplicationNature</nature>
+		<nature>org.python.pydev.pythonNature</nature>
+	</natures>
+</projectDescription>

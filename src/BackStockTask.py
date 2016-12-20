@@ -28,7 +28,9 @@ class BackStockTask(TaskBase):
         
     def request_stock(self):
         if self._queryLut.send(self._location)==0:
-            self._quantity = self._queryLut.get_data()[0]['Quantity']
+            self._quantity = 0
+            for data in self._queryLut.get_data():
+                self._quantity = data['Quantity']
         else:
             self.next_state = REQUEST_STOCK
     

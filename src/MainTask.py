@@ -11,6 +11,7 @@ from voice import globalwords
 from vocollect_core.utilities.localization import itext
 from LutOdr import InventoryOdr, InventoryLut
 from vocollect_lut_odr.receivers import StringField, NumericField
+import errno
 
 WELCOME_PROMPT = 'welcomePrompt'
 REQUEST_LOCATION = 'requestLocation'
@@ -27,7 +28,9 @@ class MainTask(TaskBase):
         super(MainTask,self).__init__(taskRunner, callingTask)
         self.name = 'taskMain'
         self._commonOdr = InventoryOdr()
-        self._assignmentLut = InventoryLut('LUTLocation', StringField('Location'),NumericField('CheckDigit'))
+        self._assignmentLut = InventoryLut('LUTLocation', 
+                                           StringField('Location'),
+                                           NumericField('CheckDigit'))
         
     def initializeStates(self):
         self.addState(WELCOME_PROMPT, self.welcome_prompt)
@@ -41,17 +44,25 @@ class MainTask(TaskBase):
         prompt_ready(itext('main.welcome.prompt'), True)
         
     def request_location(self):
-        if self._assignmentLut.send() == 0:
+        error = self._assignmentLut.send()
+        if error == 0:
             data = self._assignmentLut.get_data()
             self._location = data[0]['Location']
             self._chk_digit = data[0]['CheckDigit']
-        else:
+        
+        elif error == errno.ECONNREFUSED:
+            prompt_ready(itext('error.connection.refused'), True)
+            self.next_state = REQUEST_LOCATION
+        
+        elif error == errno.ETIMEDOUT:
+            prompt_ready(itext('error.connection.timeout'), True)
             self.next_state = REQUEST_LOCATION
         
     
     def location_prompt(self):
         globalwords.words['sign off'].enabled = True
-        op_entry = prompt_digits(itext('main.location.prompt',self._location), itext('main.location.help'),
+        op_entry = prompt_digits(itext('main.location.prompt',self._location), 
+                                itext('main.location.help'),
                                 3, 3, confirm=False)
         if int(self._chk_digit) != int(op_entry) :
             prompt_only(itext('main.wrong.check.digit', str(op_entry)), True)
@@ -63,7 +74,11 @@ class MainTask(TaskBase):
                                 1, 5, True, additional_vocab = {BACK_STOCK_CMD : False})
         if self._bin_qty == BACK_STOCK_CMD:
             self._bin_qty = 0
-            self.launch(obj_factory.get(BackStockTask,self._location, self.taskRunner), self.current_state)
+            self.launch(obj_factory.get(BackStockTask,
+                                        self._location, 
+                                        self.taskRunner), 
+                                        self.current_state)
+    
     def send_inventory(self):
         self._commonOdr.send('ODRCount', self._location, self._bin_qty)
         self.next_state = REQUEST_LOCATION

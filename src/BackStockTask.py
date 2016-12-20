@@ -27,10 +27,10 @@ class BackStockTask(TaskBase):
         self.addState(QUANTITY_PROMPT, self.quantity_prompt)
         
     def request_stock(self):
-        if self._queryLut.send(self._location)==0:
+        if self._queryLut.send(self._location) == 0:
             self._quantity = 0
             for data in self._queryLut.get_data():
-                self._quantity = data['Quantity']
+                self._quantity += data['Quantity']
         else:
             self.next_state = REQUEST_STOCK
     

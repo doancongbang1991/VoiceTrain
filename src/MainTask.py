@@ -28,9 +28,7 @@ class MainTask(TaskBase):
         super(MainTask,self).__init__(taskRunner, callingTask)
         self.name = 'taskMain'
         self._commonOdr = InventoryOdr()
-        self._assignmentLut = InventoryLut('LUTLocation', 
-                                           StringField('Location'),
-                                           NumericField('CheckDigit'))
+        self._assignmentLut = InventoryLut('LUTLocation', StringField('Location'), NumericField('CheckDigit'))
         
     def initializeStates(self):
         self.addState(WELCOME_PROMPT, self.welcome_prompt)
@@ -44,17 +42,18 @@ class MainTask(TaskBase):
         prompt_ready(itext('main.welcome.prompt'), True)
         
     def request_location(self):
-        error = self._assignmentLut.send()
-        if error == 0:
+        err = self._assignmentLut.send()
+        
+        if err == 0:
             data = self._assignmentLut.get_data()
             self._location = data[0]['Location']
             self._chk_digit = data[0]['CheckDigit']
-        
-        elif error == errno.ECONNREFUSED:
+            
+        elif err == errno.ECONNREFUSED:
             prompt_ready(itext('error.connection.refused'), True)
             self.next_state = REQUEST_LOCATION
         
-        elif error == errno.ETIMEDOUT:
+        elif err == errno.ETIMEDOUT:
             prompt_ready(itext('error.connection.timeout'), True)
             self.next_state = REQUEST_LOCATION
         

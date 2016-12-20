@@ -11,7 +11,7 @@ import time
 from vocollect_lut_odr.connections import LutConnection, OdrConnection
 from vocollect_lut_odr.receivers import Lut, OdrConfirmationByte
 from vocollect_lut_odr.transports import TransientSocketTransport
-from error_handler import get_errno
+from ErrorHandler import getError
 
 class InventoryOdr(object):
     def __init__(self):
@@ -58,7 +58,7 @@ class InventoryLut(object):
                     voice.audio.beep(400, 0.2)
             error = 0
         except Exception as e:
-            error = get_errno(e)
+            error = getError(e)
         return error
     def get_data(self):
         return self._connection.lut_data 

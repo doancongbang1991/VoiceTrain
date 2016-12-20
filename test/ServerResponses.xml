@@ -8,6 +8,7 @@
 		<response name="Backstock: Query" endOfRecord="\r\n" expression="LUTBackStock.*">
 			<record data= "5 4 X 3 2,456"/>
 			<record data= "5 4 X 3 2,789"/>
+			<record data= "5 4 X 3 2,789"/>
 		</response>
 	</responseQueue>
 </testdata>

@@ -1,13 +1,8 @@
-'''
-Created on Dec 18, 2016
-
-@author: BangDoan
-'''
 import errno
 import socket
 
 
-def get_errno(e):
+def getError(e):
     try:
         raise e
     

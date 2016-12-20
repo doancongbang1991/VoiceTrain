@@ -3,11 +3,6 @@ from MainTask import MainTask
 from vocollect_core.utilities import obj_factory, pickler
 from vocollect_core.dialog.functions import prompt_ready
 
-#class MainTask_Custom(MainTask):
-#	
-#	def welcome_prompt(self):
-#		prompt_ready("Welcome to my custom version", True)
-
 class Inventory(TaskRunnerBase):
 	def __init__(self):
 		super(Inventory, self).__init__()
@@ -15,7 +10,7 @@ class Inventory(TaskRunnerBase):
 		InvGlobals.runner = self
 	
 	def startUp(self):
-		self.launch(obj_factory.get(MainTask, self), 	None)
+		self.launch(obj_factory.get(MainTask, self), None)
 	
 	def initialize(self):
 		self.app_name = 'Inventory'
